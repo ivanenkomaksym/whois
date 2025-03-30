@@ -9,7 +9,6 @@ function lookupDomain(domain: string): Promise<WhoisData> {
         try {
             whois.lookup(domain, {}, (err: Error | null, data: string) => {
                 if (err) {
-                    console.log(err);
                     reject(err);
                     return;
                 }
