@@ -1,4 +1,5 @@
 import whois from 'whois';
+import dns from 'dns';
 
 interface WhoisData {
     [key: string]: string;
@@ -38,8 +39,46 @@ function lookupDomain(domain: string): Promise<WhoisData> {
     });
 }
 
+function getDomainGeolocation(domain: string): Promise<any> {
+    return getIPAddress(domain)
+        .then(ipAddresses => {
+            console.log('IP Addresses:', ipAddresses);
+            if (ipAddresses.length > 0) {
+                return getGeolocation(ipAddresses[0]); // Get geolocation for the first IP address
+            } else {
+                throw new Error('No IP addresses found for domain');
+            }
+        })
+        .catch(error => {
+            console.error('Error in getDomainGeolocation:', error);
+            throw error;
+        });
+}
+
+function getIPAddress(domain: string): Promise<string[]> {
+    return new Promise((resolve, reject) => {
+        dns.resolve4(domain, (err, addresses) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(addresses); // Returns an array of IPv4 addresses
+            }
+        });
+    });
+}
+
+async function getGeolocation(ip: string) {
+    try {
+        const response = await fetch(`http://ip-api.com/json/${ip}`);
+        const data = await response.json();
+        return data; // Returns JSON with location info
+    } catch (error) {
+        console.error('Error fetching geolocation:', error);
+    }
+}
+
 function trimString(data: string): string {
     return data.toLowerCase().replace(/[^a-z0-9]/g, '_');
 }
 
-export { lookupDomain, WhoisData }; 
+export { lookupDomain, WhoisData, getDomainGeolocation }; 
