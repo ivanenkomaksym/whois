@@ -1,4 +1,5 @@
-import { lookupDomain, WhoisData } from "../../services/whoisService";
+import { lookupDomain } from "../../services/whoisService";
+import { WhoisData } from "../../types/whoisService";
 import whois from 'whois';
 
 // Mock the `whois.lookup` method to avoid making real network requests
@@ -24,10 +25,10 @@ Registrar: MarkMonitor Inc.`;
         const result: WhoisData = await lookupDomain(domain);
 
         // Check that the result is parsed correctly
-        expect(result['domain_name']).toBe('GOOGLE.COM');
-        expect(result['registrant_name']).toBe('Google LLC');
-        expect(result['creation_date']).toBe('1997-09-15T00:00:00Z');
-        expect(result['registrar']).toBe('MarkMonitor Inc.');
+        expect(result.domainInformation.domainName).toBe('GOOGLE.COM');
+        expect(result.registrantContact.name).toBe('Google LLC');
+        expect(result.domainInformation.creationDate).toBe('1997-09-15T00:00:00Z');
+        expect(result.registrarInformation.registrar).toBe('MarkMonitor Inc.');
     });
 
     it('should reject when whois.lookup returns an error', async () => {
@@ -53,7 +54,15 @@ Registrar: MarkMonitor Inc.`;
         });
 
         // Try to call lookupDomain and expect it to resolve with an empty object
+        const expectedResult: WhoisData = {
+            domainInformation: {},
+            registrarInformation: {},
+            registrantContact: {},
+            adminContact: {},
+            techContact: {}
+        };
+        
         const result: WhoisData = await lookupDomain(domain);
-        expect(result).toEqual({});
+        expect(result).toEqual(expectedResult); // Expecting an empty WhoisData object   
     });
 });
