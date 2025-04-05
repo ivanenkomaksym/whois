@@ -1,3 +1,4 @@
+import { getDomainGeolocation } from "../../services/geoService";
 import { lookupDomain } from "../../services/whoisService";
 import { WhoisData } from "../../types/whoisService";
 import whois from 'whois';
@@ -6,6 +7,7 @@ import whois from 'whois';
 jest.mock('whois', () => ({
     lookup: jest.fn(),
 }));
+jest.mock('../../services/geoService');
 
 describe('lookupDomain', () => {
     it('should resolve with parsed WHOIS data when lookup is successful', async () => {
@@ -53,13 +55,23 @@ Registrar: MarkMonitor Inc.`;
             callback(null, mockInvalidData);
         });
 
+        const mockGeoData = {
+            ipAddress: '1.2.3.4',
+            country: 'Mockland',
+            city: 'Mock City'
+        };
+
+        const mockedGetGeo = getDomainGeolocation as jest.MockedFunction<typeof getDomainGeolocation>;
+        mockedGetGeo.mockResolvedValue(mockGeoData);
+
         // Try to call lookupDomain and expect it to resolve with an empty object
         const expectedResult: WhoisData = {
             domainInformation: {},
             registrarInformation: {},
             registrantContact: {},
             adminContact: {},
-            techContact: {}
+            techContact: {},
+            geolocationData: mockGeoData
         };
         
         const result: WhoisData = await lookupDomain(domain);

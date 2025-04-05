@@ -39,4 +39,5 @@ export interface WhoisData {
     registrantContact: ContactInfo;
     adminContact: ContactInfo;
     techContact: ContactInfo;
+    geolocationData: GeolocationData;
 }
