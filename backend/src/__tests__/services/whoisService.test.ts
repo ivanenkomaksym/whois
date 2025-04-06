@@ -1,6 +1,6 @@
 import { getDomainGeolocation } from "../../services/geoService";
 import { lookupDomain } from "../../services/whoisService";
-import { WhoisData } from "../../types/whoisService";
+import { WhoisData } from "../../../../shared/types/whoisData";
 import whois from 'whois';
 
 // Mock the `whois.lookup` method to avoid making real network requests

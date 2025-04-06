@@ -1,9 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import router from '../../routes/whois';
-import request from 'supertest';
 import { lookupDomain } from '../../services/whoisService';
-import { WhoisData } from '../../types/whoisService';
+import { WhoisData } from '../../../../shared/types/whoisData';
+import request from 'supertest';
 
 const app = express();
 app.use(bodyParser.json());

@@ -1,3 +1,5 @@
+import { GeolocationData } from './geolocationData';
+
 export interface DomainInformation {
     domainName?: string;
     registryDomainId?: string;

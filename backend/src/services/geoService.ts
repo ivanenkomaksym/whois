@@ -1,4 +1,4 @@
-import { GeolocationData } from "../types/geoService";
+import { GeolocationData } from "../../../shared/types/geolocationData";
 import dns from 'dns';
 
 function getDomainGeolocation(domain: string): Promise<GeolocationData> {

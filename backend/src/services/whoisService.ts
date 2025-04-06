@@ -1,5 +1,5 @@
 import whois from 'whois';
-import { WhoisData } from '../types/whoisService';
+import { WhoisData } from '../../../shared/types/whoisData';
 import { getDomainGeolocation } from './geoService';
 
 function lookupDomain(domain: string): Promise<WhoisData> {
