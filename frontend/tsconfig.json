@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "target": "es2016",
+    "module": "es2022",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true 
+  },
+  "include": ["src/**/*.ts", "../shared/types/whoisData.ts", "src/pages/Home.tsx", "src/App.tsx"]
+}
