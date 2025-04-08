@@ -3,6 +3,7 @@ import WhoisForm from '../components/WhoIsForm';
 import WhoisResult from '../components/WhoIsResult';
 import { fetchWhois } from "../api";
 import { WhoisData } from '../../../shared/types/whoisData';
+import '../styles/Home.css'; // Assuming you have a CSS file for styles
 
 export default function Home() {
     const [whoisData, setWhoisData] = useState<WhoisData | null>(null);
@@ -13,8 +14,7 @@ export default function Home() {
     }
 
     return (
-        <div>
-            <h1>WHOIS Lookup</h1>
+        <div className="home-container">
             <WhoisForm onSearch={handleSearch} />
             <WhoisResult result={whoisData} />
         </div>

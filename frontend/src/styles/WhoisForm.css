@@ -1,0 +1,45 @@
+.whois-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.whois-form {
+  display: flex;
+  gap: 12px;
+  background: #ffffff;
+  padding: 24px 32px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+  width: 100%;
+}
+
+.whois-form input {
+  flex: 1;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.whois-form input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.whois-form button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.whois-form button:hover {
+  background-color: #1d4ed8;
+}

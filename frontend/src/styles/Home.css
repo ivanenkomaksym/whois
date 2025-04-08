@@ -1,0 +1,12 @@
+.home-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .home-title {
+    font-size: 2.5rem;
+    margin-bottom: 24px;
+    color: #111827;
+  }
+  
