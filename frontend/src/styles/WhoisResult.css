@@ -1,0 +1,53 @@
+.whois-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.whois-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.whois-table th:first-child,
+.whois-table td:first-child {
+    width: 200px;
+    text-align: left;
+}
+
+.whois-table th, .whois-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.whois-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.whois-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.whois-table td strong {
+  color: #333;
+}
+
+.table-header {
+  background-color: #008CBA;
+  text-align: center;
+}
