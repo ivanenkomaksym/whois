@@ -3,11 +3,13 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "test": "jest",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "@types/node": "^22.14.0",
+    "jest": "^29.7.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import WhoisForm from '../components/WhoIsForm';
-import WhoisResult from '../components/WhoIsResult';
-import { fetchWhois } from "../api";
-import { WhoisData } from '../../../shared/types/whoisData';
+import WhoisForm from '../components/WhoIsForm.tsx';
+import WhoisResult from '../components/WhoIsResult.tsx';
+import { fetchWhois } from "../api.ts";
+import { WhoisData } from '../../../shared/types/whoisData.ts';
 import '../styles/Home.css'; // Assuming you have a CSS file for styles
 
 export default function Home() {

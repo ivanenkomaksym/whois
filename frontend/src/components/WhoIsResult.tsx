@@ -1,5 +1,5 @@
 import React from 'react';
-import { WhoisData } from '../../../shared/types/whoisData';
+import { WhoisData } from '../../../shared/types/whoisData.ts';
 import '../styles/WhoisResult.css';
 
 export default function WhoisResult({ result }: { result: WhoisData | null }) {
