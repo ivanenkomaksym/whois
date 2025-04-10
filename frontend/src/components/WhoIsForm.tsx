@@ -13,17 +13,21 @@ const WhoIsForm: FC<WhoIsFormProps> = ({ onSearch }) => {
     };
 
     return (
-        <div className="whois-container">
-            <div className="whois-form">
-                <input
-                    type="text"
-                    value={domain}
-                    onChange={handleChange}
-                    placeholder="Enter domain (example.com)"
-                />
-                <button onClick={() => onSearch(domain)}>Check</button>
-            </div>
-        </div>
+        <form onSubmit={(e) => {
+            e.preventDefault(); onSearch(domain);
+        }}>
+            <div className="whois-container">
+                <div className="whois-form">
+                    <input
+                        type="text"
+                        value={domain}
+                        onChange={handleChange}
+                        placeholder="Enter domain (example.com)"
+                    />
+                    <button onClick={() => onSearch(domain)}>Check</button>
+                </div>
+            </div >
+        </form>
     );
 };
 
