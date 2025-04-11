@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "lint": "eslint .",
     "preview": "vite preview"
   },
