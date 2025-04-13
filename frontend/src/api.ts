@@ -1,7 +1,8 @@
 import axios from "axios";
 import { WhoisData } from '../../shared/types/whoisData.ts';
 
-const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+console.log("API URL:", API_URL);
 
 export async function fetchWhois(domain: string): Promise<WhoisData> {
     try {

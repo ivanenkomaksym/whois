@@ -84,7 +84,7 @@ jobs:
 
     - name: Push
       run: |
-        IMAGE_TAG="ivanenkomak/whois-api:latest"
+        IMAGE_TAG="ivanenkomak/whois-api:1"
         echo "Building Docker image with tag: ${IMAGE_TAG}"
         docker buildx build -t "${IMAGE_TAG}" --file ./backend/Dockerfile ./backend --push
 
@@ -109,7 +109,7 @@ jobs:
     - name: Deploy server to Cloud Run
       run: |
         gcloud run deploy whois-api \
-          --image ivanenkomak/whois-api:latest \
+          --image ivanenkomak/whois-api:1 \
           --platform managed \
           --region europe-central2 \
           --allow-unauthenticated

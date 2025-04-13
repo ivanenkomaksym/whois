@@ -18,7 +18,7 @@ services:
       dockerfile: Dockerfile
     container_name: whois-api
     ports:
-      - 5000:80
+      - 5000:8080
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
