@@ -14,8 +14,8 @@ services:
     image: ivanenkomak/whois-api:latest
     pull_policy: always
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./backend/Dockerfile
     container_name: whois-api
     ports:
       - 5000:8080

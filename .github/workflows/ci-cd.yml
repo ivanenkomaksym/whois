@@ -86,7 +86,7 @@ jobs:
       run: |
         IMAGE_TAG="ivanenkomak/whois-api:1"
         echo "Building Docker image with tag: ${IMAGE_TAG}"
-        docker buildx build -t "${IMAGE_TAG}" --file ./backend/Dockerfile ./backend --push
+        docker buildx build -t "${IMAGE_TAG}" --file ./backend/Dockerfile . --push
 
   deploy-to-cloud-run:
     runs-on: ubuntu-latest
