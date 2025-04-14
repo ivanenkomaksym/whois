@@ -1,0 +1,1 @@
+export const secretHeaderName = 'X-Secret-Header'; // Header name for secret key
