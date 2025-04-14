@@ -1,4 +1,4 @@
-import { secretHeaderName } from "../consts";
+import { secretHeaderName } from "../../../shared/types/consts";
 
 function verifySecret(req: {
     headers: any; method: any;
