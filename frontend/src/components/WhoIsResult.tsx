@@ -1,6 +1,6 @@
 import React from 'react';
 import { WhoisData } from '../../../shared/types/whoisData.ts';
-import '../styles/WhoisResult.css';
+import '../styles/WhoIsResult.css';
 
 export default function WhoisResult({ result }: { result: WhoisData | null }) {
   if (!result) return null;

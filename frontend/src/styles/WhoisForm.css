@@ -1,43 +1,49 @@
 .whois-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px; /* Add space from the top */
 }
 
 .whois-form {
-  display: flex;
-  gap: 12px;
-  background: #ffffff;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
-  width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 12px; /* Increase space between input and button */
 }
 
 .whois-form input {
-  flex: 1;
-  padding: 10px 16px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+    width: 350px; /* Slightly wider input */
+    padding: 14px;
+    font-size: 1rem;
+    border: 1px solid #d1d5db; /* Light gray border */
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .whois-form input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    border-color: #2563eb; /* Blue border on focus */
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.2); /* Blue shadow on focus */
 }
 
 .whois-form button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s;
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #2563eb; /* Blue button */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .whois-form button:hover {
-  background-color: #1d4ed8;
+    background-color: #1d4ed8; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.whois-form button:active {
+    transform: scale(0.98); /* Slight shrink effect on click */
 }

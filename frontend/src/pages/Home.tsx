@@ -3,7 +3,7 @@ import WhoisForm from '../components/WhoIsForm.tsx';
 import WhoisResult from '../components/WhoIsResult.tsx';
 import { fetchWhois } from "../api.ts";
 import { WhoisData } from '../../../shared/types/whoisData.ts';
-import '../styles/Home.css'; // Assuming you have a CSS file for styles
+import '../styles/Home.css';
 
 export default function Home() {
     const [whoisData, setWhoisData] = useState<WhoisData | null>(null);
@@ -16,7 +16,7 @@ export default function Home() {
     return (
         <div className="home-container">
             <WhoisForm onSearch={handleSearch} />
-            <WhoisResult result={whoisData} />
+            {whoisData && <WhoisResult result={whoisData} />}
         </div>
     );
 }
