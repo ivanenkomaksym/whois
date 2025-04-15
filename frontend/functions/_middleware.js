@@ -1,7 +1,7 @@
-import { secretHeaderName } from "../../../shared/types/consts";
 // Define which paths should have the secret header added
 // Adjust this pattern to match your API routes served by Cloud Run
 const API_PATHS = ['/api/']; 
+const SECRET_HEADER_NAME = 'X-API-Secret'; // Example header name
 
 export async function onRequest(context) {
   const { request, env, next } = context;
@@ -19,7 +19,7 @@ export async function onRequest(context) {
   const newRequest = new Request(request);
 
   // Add the custom header with the secret from environment variables
-  newRequest.headers.set(secretHeaderName, env.API_SECRET); 
+  newRequest.headers.set(SECRET_HEADER_NAME, env.API_SECRET); 
 
   // Continue the request chain, potentially fetching from the origin (your API)
   // Or just pass control if this middleware is only for header injection
@@ -27,7 +27,7 @@ export async function onRequest(context) {
   // Depending on how Pages is configured (proxying vs direct function fetch),
   // you might just need `next()` if Pages is already set up to proxy /api/* // to your Cloud Run URL. Let's assume Pages proxies based on domain/path rules:
 
-  console.log(`Added ${secretHeaderName} header for path: ${url.pathname}`); // Optional: for debugging
+  console.log(`Added ${SECRET_HEADER_NAME} header for path: ${url.pathname}`); // Optional: for debugging
 
   // Proceed with the modified request
   return await next(newRequest); 
