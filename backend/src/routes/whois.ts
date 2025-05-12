@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express';
 import { lookupDomain } from '../services/whoisService';
-import { domainRegex } from './../consts';
+import { domainRegex } from '../../../shared/types/consts';
 
 const router = express.Router();
 
