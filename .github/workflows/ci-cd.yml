@@ -14,6 +14,7 @@ env:
   DOCKER_USER: ${{ secrets.DOCKER_USER }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
   GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY}}
+  AUTH_SECRET_KEY: ${{ secrets.AUTH_SECRET_KEY }}
 
 jobs:
   build-backend:
@@ -112,4 +113,5 @@ jobs:
           --image ivanenkomak/whois-api:1 \
           --platform managed \
           --region europe-central2 \
-          --allow-unauthenticated
+          --allow-unauthenticated \
+          --set-env-vars "AUTH_SECRET_KEY=${{ env.AUTH_SECRET_KEY }}"
