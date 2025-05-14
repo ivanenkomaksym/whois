@@ -3,15 +3,16 @@ import cors from 'cors';
 import whoisRoutes from './routes/whois';
 import { rateLimit } from 'express-rate-limit';
 import { verifySecret } from './middlewares/verifySecretMiddleware';
+import { RATE_LIMIT_WINDOW, RATE_LIMIT_MAX_REQUESTS, RATE_LIMIT_MESSAGE } from './consts';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 const limiter = rateLimit({
-    windowMs: 5 * 1000, // 5 seconds
-    max: 5, // Limit each IP to 2 requests per windowMs
-    message: 'Too many requests, please try again later.',
+    windowMs: RATE_LIMIT_WINDOW,
+    max: RATE_LIMIT_MAX_REQUESTS,
+    message: RATE_LIMIT_MESSAGE,
     standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
     legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
