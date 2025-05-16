@@ -1,36 +1,39 @@
 import whois from 'whois';
 import { WhoisData } from '../../../shared/types/whoisData';
 import { getDomainGeolocation } from './geoService';
+import { IWhoisRepository } from './whoisRepository';
 
-function lookupDomain(domain: string): Promise<WhoisData> {
-    return new Promise((resolve, reject) => {
-        whois.lookup(domain, {}, async (err: Error | null, data: string) => {
-            if (err) {
-                reject(err);
-                return;
-            }
+class WhoisService implements IWhoisRepository {
+    async lookupDomain(domain: string): Promise<WhoisData> {
+        return new Promise((resolve, reject) => {
+            whois.lookup(domain, {}, async (err: Error | null, data: string) => {
+                if (err) {
+                    reject(err);
+                    return;
+                }
 
-            try {
-                const parsedData: WhoisData = {
-                    domainInformation: {},
-                    registrarInformation: {},
-                    registrantContact: {},
-                    adminContact: {},
-                    techContact: {},
-                    geolocationData: {}
-                };
+                try {
+                    const parsedData: WhoisData = {
+                        domainInformation: {},
+                        registrarInformation: {},
+                        registrantContact: {},
+                        adminContact: {},
+                        techContact: {},
+                        geolocationData: {}
+                    };
 
-                parseWhoisData(data, parsedData);
-                
-                const geoData = await getDomainGeolocation(domain);
-                parsedData.geolocationData = geoData;
+                    parseWhoisData(data, parsedData);
+                    
+                    const geoData = await getDomainGeolocation(domain);
+                    parsedData.geolocationData = geoData;
 
-                resolve(parsedData);
-            } catch (error) {
-                reject(error);
-            }
+                    resolve(parsedData);
+                } catch (error) {
+                    reject(error);
+                }
+            });
         });
-    });
+    }
 }
 
 function parseWhoisData(data: string, parsedData: WhoisData) {
@@ -110,4 +113,4 @@ function trimString(data: string): string {
     return data.toLowerCase().replace(/[^a-z0-9]/g, '_');
 }
 
-export { lookupDomain }; 
+export { WhoisService };
