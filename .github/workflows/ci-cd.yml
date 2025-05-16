@@ -79,6 +79,7 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
+          wranglerVersion: "4.15.2"
           workingDirectory: ./api-proxy
 
   push-images:
