@@ -1,5 +1,5 @@
 import { getDomainGeolocation } from "../../services/geoService";
-import { lookupDomain } from "../../services/whoisService";
+import { WhoisService } from "../../services/whoisService";
 import { WhoisData } from "../../../../shared/types/whoisData";
 import whois from 'whois';
 
@@ -24,7 +24,8 @@ Registrar: MarkMonitor Inc.`;
             callback(null, mockWhoisData); // Simulate success with mock data
         });
 
-        const result: WhoisData = await lookupDomain(domain);
+        const whoisService = new WhoisService();
+        const result: WhoisData = await whoisService.lookupDomain(domain);
 
         // Check that the result is parsed correctly
         expect(result.domainInformation.domainName).toBe('GOOGLE.COM');
@@ -43,7 +44,8 @@ Registrar: MarkMonitor Inc.`;
         });
 
         // Try to call lookupDomain and expect it to reject with the error
-        await expect(lookupDomain(domain)).rejects.toThrow('WHOIS request failed');
+        const whoisService = new WhoisService();
+        await expect(whoisService.lookupDomain(domain)).rejects.toThrow('WHOIS request failed');
     });
 
     it('should handle invalid WHOIS data gracefully', async () => {
@@ -74,7 +76,8 @@ Registrar: MarkMonitor Inc.`;
             geolocationData: mockGeoData
         };
         
-        const result: WhoisData = await lookupDomain(domain);
+        const whoisService = new WhoisService();
+        const result: WhoisData = await whoisService.lookupDomain(domain);
         expect(result).toEqual(expectedResult); // Expecting an empty WhoisData object   
     });
 });

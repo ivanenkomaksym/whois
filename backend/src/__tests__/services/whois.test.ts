@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import router from '../../routes/whois';
-import { lookupDomain } from '../../services/whoisService';
+import { WhoisService } from '../../services/whoisService';
 import { WhoisData } from '../../../../shared/types/whoisData';
 import request from 'supertest';
 
@@ -17,7 +17,7 @@ afterEach(() => {
 
 describe('api', () => {
     it ('should return WHOIS data for a valid domain', async () => {
-        const invalidDomain = 'google.com';
+        const validDomain = 'google.com';
                 
         // Mock the data returned by whois.lookup
         const expectedResult: WhoisData = {
@@ -32,11 +32,9 @@ describe('api', () => {
         };
 
         // Mocking the implementation of whois.lookup to return mock data
-        (lookupDomain as jest.Mock).mockImplementation((domain) => {
-            return expectedResult;
-        });
+        (WhoisService.prototype.lookupDomain as jest.Mock).mockResolvedValue(expectedResult);
 
-        const response = await request(app).get(`/whois/${invalidDomain}`);
+        const response = await request(app).get(`/whois/${validDomain}`);
         expect(response.status).toBe(200);
         const result: WhoisData = response.body;
 

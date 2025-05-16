@@ -1,5 +1,5 @@
 import express, {Request, Response} from 'express';
-import { lookupDomain } from '../services/whoisService';
+import { WhoisService } from '../services/whoisService';
 import { domainRegex } from '../../../shared/types/consts';
 
 const router = express.Router();
@@ -12,7 +12,8 @@ router.get('/whois/:domain', async (req: Request, res: Response) => {
             return;
         }
 
-        const data = await lookupDomain(domain);
+        const whoisRepo = new WhoisService();
+        const data = await whoisRepo.lookupDomain(domain);
         res.json(data);
     } catch (detailedError) {
         res.status(400).json({ error: 'Error fetching WHOIS data. ', detailedError: detailedError });
