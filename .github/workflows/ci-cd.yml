@@ -70,6 +70,17 @@ jobs:
     - run: npm test
       working-directory: ./frontend
 
+  deploy-api-proxy-to-cloudflare:
+    runs-on: ubuntu-latest
+    if: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: ./api-proxy
+
   push-images:
     runs-on: ubuntu-latest
     needs: build-backend
@@ -116,14 +127,3 @@ jobs:
           --region europe-central2 \
           --allow-unauthenticated \
           --set-env-vars "AUTH_SECRET_KEY=${{ env.AUTH_SECRET_KEY }}"
-
-  deploy-api-proxy-to-cloudflare:
-    runs-on: ubuntu-latest
-    needs: deploy-to-cloud-run
-    if: true
-    steps:
-      - name: Deploy
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
-          workingDirectory: ./api-proxy
